@@ -1,0 +1,16 @@
+{
+  "voice": "cjVigY5qzO86Huf0OWal",
+  "voice_name": "Eric (voz gratuita de ElevenLabs, multilingüe)",
+  "model": "eleven_multilingual_v2",
+  "tr": [0, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.9],
+  "scenes": [
+    "¡Hola de nuevo! Soy Chiribaía. La BDPI ya tiene los datos. Hoy te cuento cómo hacer que se vean, y se entiendan, mejor.",
+    "La BDPI ya ofrece mucho: un buscador de localidades, fichas por pueblo, un mapa interactivo con capas, y descargas de datos oficiales.",
+    "México es un buen referente. El Atlas del INPI organiza cada pueblo en bloques claros, y su catálogo permite consultar cada comunidad con una ficha completa, por pestañas.",
+    "Primera mejora: fichas enriquecidas. Cada pueblo, en bloques: síntesis, lengua, territorio, cultura e identidad, población, y mapa.",
+    "Segunda mejora: contenido multimedia. Audios en lengua originaria, fotografías, video y música. Siempre con la participación y el consentimiento de los pueblos.",
+    "Tercera mejora: mapa y ficha conectados. Eliges un territorio en el mapa, y se abre la ficha del pueblo, con búsqueda por comunidad.",
+    "Y yo seré la puerta de entrada. Por ejemplo, preguntas dónde vive el pueblo aimara, y te llevo a su ficha y a su mapa.",
+    "La BDPI ya tiene los datos. Hagamos que cuenten mejor la historia de cada pueblo. Diseñemos juntos la hoja de ruta."
+  ]
+}
