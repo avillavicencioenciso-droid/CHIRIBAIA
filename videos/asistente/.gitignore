@@ -7,3 +7,5 @@ _*.mp4
 audio/_*.wav
 ffmpeg2pass*
 *-movil.mp4
+vo/cache/
+audio/vo.wav
