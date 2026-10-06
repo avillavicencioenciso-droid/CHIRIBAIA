@@ -139,19 +139,29 @@ export default {
       },
       actor(t) { return { x: 1760, y: 1000, h: 130, pose: { rot: rest(t) }, mood: 'happy' }; } },
 
-    // 6 · MEJORA 3 — mapa y ficha conectados
+    // 6 · MEJORA 3 — el mapa abre la ficha del pueblo y las fichas de localidades (con datos estadísticos y vínculo)
     { type: 'story', dur: DUR[5], trans: { type: 'pan', dur: 0.8 }, images: [IMG.logo, IMG.mapa], say: '',
       render(K, s, h) {
-        const c = K.ctx; logo(K, 110, 56, 70); kicker(K, 'Mejora 3', 112, 170, A(s, 0.2)); rise(K, A(s, 0.3, 0.7), () => rich(K, 'Mapa y ficha *conectados*', 110, 255, 72));
-        const tm = T(5, 'mapa', 2, { lead: 0.2 }), X = 80, Y = 310, WW = 900, sc = pic(K, K.images[IMG.mapa], X, Y, WW, 560, A(s, tm, 0.8)); if (sc) K.cue('pop', tm);
-        const tt = T(5, 'territorio', 4.9, { lead: 0.2 }), tf = T(5, 'ficha', 6.8, { n: 1, lead: 0.2 }), tb = T(5, 'busqueda', 8, { lead: 0.2 });
-        if (sc) { const cx = X + 1100 * sc, cy = Y + 880 * sc; L.circleOn(c, cx, cy, 90 * sc, 70 * sc, L.clamp((s.t - tt) / 0.9), ACC, { w: 6 });
-          const q = L.clamp((s.t - tf + 0.3) / 0.7); if (q > 0) { c.save(); c.strokeStyle = ACC; c.lineWidth = 4; c.setLineDash([10, 10]); c.beginPath(); c.moveTo(cx + 90 * sc, cy - 20); c.lineTo(cx + 90 * sc + (1040 - cx - 90 * sc) * q, cy - 20 + (480 - cy + 20) * q); c.stroke(); c.restore(); } }
-        rise(K, A(s, tf, 0.7), () => { card(K, 1040, 330, 780, 330, { r: 28, sh: 50 }); TAG(K, 'FICHA DEL PUEBLO · EJEMPLO ILUSTRATIVO', 1076, 380); tx(K, 'Aimara', 1076, 450, 56, { w: 'b', c: ACC }); tx(K, 'Altiplano peruano · Moquegua, Puno y Tacna', 1076, 500, 28, { c: GRAY });
-          pill(K, 'Ver ficha completa', 1076, 550, 28, { fill: ACC }); pill(K, 'Ver en el mapa', 1380, 550, 28, { fill: '#fff', c: ACC, stroke: ACC }); }); if (A(s, tf, 0.7) > 0.05) K.cue('pop', tf);
-        rise(K, A(s, tb, 0.7), () => { L.rrect(c, 1040, 720, 780, 80, 40); c.fillStyle = '#fff'; c.fill(); c.strokeStyle = INK; c.lineWidth = 2; c.stroke(); tx(K, 'Buscar por comunidad…', 1090, 770, 28, { c: MUTED }); let fx = 1040; ['Pueblo', 'Departamento', 'Distrito'].forEach(f => { fx += pill(K, f, fx, 826, 22, { fill: '#F1F1EE', c: GRAY }) + 14; }); }); if (A(s, tb, 0.7) > 0.05) K.cue('pop', tb);
+        const c = K.ctx; logo(K, 110, 56, 70); kicker(K, 'Mejora 3', 112, 170, A(s, 0.2)); rise(K, A(s, 0.3, 0.7), () => rich(K, 'Mapa y fichas *conectados*', 110, 255, 72));
+        const tm = T(5, 'mapa', 2, { lead: 0.2 }), X = 80, Y = 310, WW = 880, sc = pic(K, K.images[IMG.mapa], X, Y, WW, 560, A(s, tm, 0.8)); if (sc) K.cue('pop', tm);
+        const tt = T(5, 'territorio', 4.8, { lead: 0.2 }), tp = T(5, 'pueblo', 6.6, { lead: 0.2 }), tl = T(5, 'localidad', 8.5, { lead: 0.3 }), te = T(5, 'estadistica', 10.4, { lead: 0.3 }), tv = T(5, 'vinculo', 11.8, { lead: 0.2 }), tb = T(5, 'comunidad', 14.6, { lead: 1.0 });
+        const link = (q, ty) => { if (q <= 0 || !sc) return; const cx = X + 1100 * sc, cy = Y + 880 * sc, x0 = cx + 90 * sc, y0 = cy - 20; c.save(); c.strokeStyle = ACC; c.lineWidth = 4; c.setLineDash([10, 10]); c.beginPath(); c.moveTo(x0, y0); c.lineTo(x0 + (1020 - x0) * q, y0 + (ty - y0) * q); c.stroke(); c.restore(); };
+        if (sc) L.circleOn(c, X + 1100 * sc, Y + 880 * sc, 90 * sc, 70 * sc, L.clamp((s.t - tt) / 0.9), ACC, { w: 6 });
+        link(L.clamp((s.t - tp + 0.3) / 0.7), 395); link(L.clamp((s.t - tl + 0.3) / 0.7), 650);
+        // ficha del pueblo
+        rise(K, A(s, tp, 0.7), () => { card(K, 1020, 310, 800, 170, { r: 26, sh: 40 }); TAG(K, 'FICHA DEL PUEBLO · EJEMPLO ILUSTRATIVO', 1056, 350); tx(K, 'Aimara', 1056, 410, 48, { w: 'b', c: ACC }); tx(K, 'Moquegua, Puno y Tacna', 1056, 450, 24, { c: GRAY }); pill(K, 'Ver ficha del pueblo', 1500, 396, 22, { fill: ACC }); }); if (A(s, tp, 0.7) > 0.05) K.cue('pop', tp);
+        // ficha de localidad: datos del buscador de la BDPI + información estadística + vínculo
+        rise(K, A(s, tl, 0.7), () => { card(K, 1020, 500, 800, 300, { r: 26, sh: 40 }); TAG(K, 'FICHA DE LOCALIDAD · EJEMPLO ILUSTRATIVO', 1056, 540); tx(K, 'Localidad seleccionada', 1056, 592, 36, { w: 'b' }); tx(K, 'Tipo de localidad · Distrito · Provincia · Reconocimiento · Titulación', 1056, 628, 20, { c: GRAY }); }); if (A(s, tl, 0.7) > 0.05) K.cue('pop', tl);
+        [['Población', 'bars'], ['Indicadores sociales', 'dots'], ['Lengua', 'line']].forEach(([nm, kind], i) => { const x = 1056 + i * 252, y = 650, p = A(s, te + i * 0.4, 0.5); if (p <= 0) return; c.save(); c.globalAlpha = L.clamp(p * 1.5); L.rrect(c, x, y, 236, 84, 14); c.fillStyle = '#F6F6F3'; c.fill(); tx(K, nm, x + 16, y + 28, nm.length > 12 ? 19 : 22, { w: 'm' });
+          c.strokeStyle = ACC; c.fillStyle = ACC; c.lineWidth = 4; c.lineCap = c.lineJoin = 'round';
+          if (kind === 'bars') [14, 26, 18, 32].forEach((v, k) => c.fillRect(x + 16 + k * 22, y + 76 - v * p, 14, v * p));
+          if (kind === 'dots') for (let k = 0; k < 5; k++) { c.globalAlpha = L.clamp(p * 1.5) * (k < 4 ? 1 : 0.3); c.beginPath(); c.arc(x + 24 + k * 30, y + 58, 9, 0, 7); c.fill(); }
+          if (kind === 'line') { c.beginPath(); [[0, .8], [.3, .5], [.6, .65], [1, .2]].forEach(([u, v], k) => { const px = x + 16 + u * 150 * p, py = y + 42 + v * 30; k ? c.lineTo(px, py) : c.moveTo(px, py); }); c.stroke(); }
+          c.restore(); });
+        const bp = A(s, tv, 0.6, L.E.back); if (bp > 0) { c.save(); c.translate(1260, 765); c.scale(bp, bp); c.translate(-1260, -765); pill(K, 'Ver ficha detallada de la localidad  →', 1056, 752, 22, { fill: ACC }); c.restore(); K.cue('pop', tv); }
+        rise(K, A(s, tb, 0.7), () => { L.rrect(c, 1020, 818, 800, 62, 31); c.fillStyle = '#fff'; c.fill(); c.strokeStyle = INK; c.lineWidth = 2; c.stroke(); tx(K, 'Buscar por comunidad…', 1060, 858, 26, { c: MUTED }); }); if (A(s, tb, 0.7) > 0.05) K.cue('pop', tb);
       },
-      actor(t) { return { x: 1760, y: 1000, h: 120, pose: { rot: rest(t) }, mood: 'dot' }; } },
+      actor(t) { return { x: 1760, y: 1000, h: 110, pose: { rot: rest(t) }, mood: 'dot' }; } },
 
     // 7 · CHIRIBAIA — la puerta de entrada
     { type: 'story', dur: DUR[6], trans: { type: 'pan', dur: 0.8 }, images: [IMG.logo], say: '',
