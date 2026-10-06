@@ -11,3 +11,4 @@ vo/cache/
 audio/vo.wav
 build*.log
 sheet*.jpg
+*-movil.mp4
