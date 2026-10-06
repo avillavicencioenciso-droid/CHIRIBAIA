@@ -1,0 +1,8 @@
+node_modules/
+stills/
+sheet*.jpg
+build.log
+sfx.json
+_*.mp4
+audio/_*.wav
+ffmpeg2pass*
