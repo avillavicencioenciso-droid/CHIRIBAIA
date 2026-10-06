@@ -9,3 +9,4 @@ ffmpeg2pass*
 *-movil.mp4
 vo/cache/
 audio/vo.wav
+build*.log

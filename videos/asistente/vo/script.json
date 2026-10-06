@@ -1,16 +1,16 @@
 {
-  "voice": "UK00oAtGYBrHBUbesfMv",
-  "voice_name": "Joselo (es-PE, ElevenLabs)",
+  "voice": "cjVigY5qzO86Huf0OWal",
+  "voice_name": "Eric (voz gratuita de ElevenLabs, multilingüe)",
   "model": "eleven_multilingual_v2",
   "scenes": [
     "¡Hola! Soy Chiribaía, el asistente de la BDPI. ¿Y si, para encontrar lo que buscas, bastara con preguntar?",
-    "La BDPI reúne nueve mil trescientas treinta y dos localidades de pueblos indígenas u originarios, donde viven más de tres millones seiscientas mil personas. Pero hoy hay que saber dónde buscar, y qué filtro usar.",
+    "La BDPI reúne nueve mil trescientas treinta y dos localidades, donde viven más de tres millones seiscientas mil personas. Pero hoy hay que saber dónde buscar, y qué filtro usar.",
     "Con el Asistente Inteligente BDPI, simplemente preguntas con tus propias palabras. Y recibes una respuesta clara, con su fuente, la ficha del pueblo y el mapa.",
-    "Cada consulta sigue su camino. Verde: respondo de inmediato, con información oficial. Amarillo: respondo, pero con una advertencia, porque requiere interpretación. Rojo: es una consulta especializada, y no la respondo yo: la derivo a un profesional.",
+    "Cada consulta sigue su camino. Verde: respondo de inmediato, con información oficial. Amarillo: respondo, con una advertencia. Rojo: es especializada, y la derivo a un profesional.",
     "Cada consulta llega al equipo correcto: geográfico, cuantitativo, cualitativo o especializado. Y queda registrada en un ticket, para que nunca se pierda.",
     "Lo que el especialista valida se guarda en una biblioteca de conocimiento. Y un panel de control muestra qué pregunta la gente, y qué información falta actualizar.",
     "Mi regla es simple. Fuente oficial y trazable. Si no tengo evidencia suficiente, no invento: derivo. Siempre con supervisión humana, y mejorando con cada consulta.",
-    "Proponemos empezar con un piloto controlado de seis meses, de noviembre de dos mil veintiséis a abril de dos mil veintisiete. Con metas claras: al menos sesenta por ciento de respuestas automáticas, menos de diez segundos por respuesta, y noventa por ciento de derivaciones correctas.",
+    "Proponemos un piloto controlado de seis meses, de noviembre de dos mil veintiséis a abril de dos mil veintisiete. Metas: al menos sesenta por ciento de respuestas automáticas, menos de diez segundos, y al menos noventa por ciento de derivaciones correctas.",
     "La propuesta es transformar la BDPI: de una plataforma donde hay que aprender a buscar, a una donde simplemente se puede preguntar. Iniciemos el piloto."
   ]
 }

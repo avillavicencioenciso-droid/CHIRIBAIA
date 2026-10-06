@@ -17,8 +17,8 @@ def tts(i, text):
     if os.path.exists(p): return json.load(open(p))
     if '--dry' in sys.argv: raise SystemExit(f'falta generar escena {i + 1}')
     k = os.environ['ELEVENLABS_API_KEY']
-    body = {'text': text, 'model_id': cfg['model'], 'language_code': 'es',
-            'voice_settings': {'stability': 0.5, 'similarity_boost': 0.75, 'style': 0.15, 'use_speaker_boost': True, 'speed': 1.0},
+    body = {'text': text, 'model_id': cfg['model'],
+            'voice_settings': {'stability': 0.5, 'similarity_boost': 0.75, 'style': 0.15, 'use_speaker_boost': True, 'speed': 1.1},
             'previous_text': SC[i - 1] if i else None, 'next_text': SC[i + 1] if i + 1 < len(SC) else None}
     body = {a: b for a, b in body.items() if b is not None}
     rq = urllib.request.Request(f"https://api.elevenlabs.io/v1/text-to-speech/{cfg['voice']}/with-timestamps?output_format=mp3_44100_128", json.dumps(body).encode(), {'xi-api-key': k, 'content-type': 'application/json'})
